@@ -39,14 +39,13 @@ public class MP1 {
     }
     
     static public void execute(){
-        for (int i = 1; i < list.size()-1; i++){
+        for (int i = 1; i < list.size(); i++){
             String temp = list.get(i).toString();
+            char letter = temp.charAt(0);
             int arg1 = (int) temp.charAt(1) - 48;
             int arg2 = (int) temp.charAt(2) - 48;
             
             temp = temp.replaceAll(" ", "");
-            
-            char letter = temp.charAt(0);
             switch(letter){
                 case 'S':
                     state[arg1] = state[arg1] + 1;
@@ -69,7 +68,12 @@ public class MP1 {
                     state[arg1] = state[arg2];
                     break;
             }
-                    
+            
+            for (int j = 0; j < state.length; j++){
+                System.out.print(state[j]);
+            }
+            System.out.println("");
+            
         }
     }
 }
