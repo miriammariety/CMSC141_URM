@@ -26,13 +26,11 @@ public class MP1 {
         }
         
         String firstLine = list.get(0).toString();
-        firstLine = firstLine.replaceAll(" ", "");
-        System.out.println(firstLine);
+        String [] temp = firstLine.split(" ");
         
-        state = new int[firstLine.length()];
-        for(int i = 0; i < firstLine.length(); i++){
-            state[i] = (int) firstLine.charAt(i) - 48;
-            System.out.print(state[i]);
+        state = new int[temp.length];
+        for(int i = 0; i < temp.length; i++){
+            state[i] = Integer.valueOf(temp[i]);
         }
         
         execute();
@@ -42,10 +40,10 @@ public class MP1 {
         for (int i = 1; i < list.size(); i++){
             String temp = list.get(i).toString();
             char letter = temp.charAt(0);
-            int arg1 = (int) temp.charAt(1) - 48;
-            int arg2 = (int) temp.charAt(2) - 48;
+            String [] tempArr = temp.split(" ");
+            int arg1 = Integer.valueOf(tempArr[1]);
+            int arg2;
             
-            temp = temp.replaceAll(" ", "");
             switch(letter){
                 case 'S':
                     state[arg1] = state[arg1] + 1;
@@ -56,7 +54,8 @@ public class MP1 {
                     break;
                     
                 case 'J':
-                    int jumpTo = (int) temp.charAt(3) - 48;
+                    int jumpTo = Integer.valueOf(tempArr[3]);
+                    arg2 = Integer.valueOf(tempArr[2]);
                     
                     if (state[arg1] == state[arg2]){
                         i = jumpTo - 1;
@@ -65,12 +64,13 @@ public class MP1 {
                     break;
                     
                 case 'C':
-                    state[arg1] = state[arg2];
+                    arg2 = Integer.valueOf(tempArr[2]);
+                    state[arg2] = state[arg1];
                     break;
             }
             
             for (int j = 0; j < state.length; j++){
-                System.out.print(state[j]);
+                System.out.print(state[j]+" ");
             }
             System.out.println("");
             
