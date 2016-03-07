@@ -7,6 +7,8 @@ package cmsc141_mp;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,7 +20,7 @@ public class MP1 {
     static int[] state;
     static ArrayList list = new ArrayList();
     
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
         Scanner in = new Scanner(new File(args[0]));
         
         while(in.hasNext()){
@@ -36,7 +38,8 @@ public class MP1 {
         execute();
     }
     
-    static public void execute(){
+    static public void execute() throws FileNotFoundException, UnsupportedEncodingException{
+        PrintWriter writer = new PrintWriter("mp1.out", "UTF-8");
         for (int i = 1; i < list.size(); i++){
             String temp = list.get(i).toString();
             char letter = temp.charAt(0);
@@ -71,10 +74,12 @@ public class MP1 {
             
             for (int j = 0; j < state.length; j++){
                 System.out.print(state[j]+" ");
+                writer.print(state[j]+" ");
             }
             System.out.println("");
-            
+            writer.println();
         }
+        writer.close();
     }
 }
 
